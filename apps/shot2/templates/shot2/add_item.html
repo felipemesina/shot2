@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shot2/css/add_item.css' %}">
+    <meta charset="utf-8">
+    <title>Add Items</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <a class='home_logout' href='/logout'>Log out</a>
+      <a class='home_logout' href='/home'>Home</a>
+    </div>
+    <div class="container-fluid">
+      <p>Create A New Wish List Item</p>
+      <form action="/items/add/" method="post">
+        {% csrf_token %}
+        <label for='item'>Item/Product:<input type="text" name="item"></label>
+        <button class='btn btn-primary' type="submit">Add</button>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+          {% endif %}
+    </form>
+  </div>
+  </body>
+</html>

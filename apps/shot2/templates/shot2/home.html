@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exam/css/home.css' %}">
+    <meta charset="utf-8">
+    <title>Welcome</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <a href='/logout'>Log out</a><br><br>
+      <p>Hello {{ user.name }}</p>
+    </div>
+      <div id='table_spacing' class='container-fluid'>
+        <p>Your Wish List:</p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Added By</th>
+            <th>Date Added</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+          <tr>
+            <td><a href='/show/{{item.id}}/'>{{item.item}}</a></td>
+            <td>{{ item.added_by }}</td>
+            <td>{{ item.created_at }}</td>
+            {% if user.id == request.session.user_id %}
+            <td><a href="/delete/{{ item.id }}/"><button>Delete</button></a></td>
+            {% else %}
+            <td><a href="/remove/{{ item.id }}/"><button>Remove</button></a></td>
+          </tr>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      <div id='table_spacing' class='container-fluid'>
+        <p>Other User's Wish List:</p>
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Added By</th>
+              <th>Date Added</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for other in others %}
+            <tr>
+              <td><a href='/show/{{other.id}}/'>{{other.item}}</a></td>
+              <td>{{ other.added_by }}</td>
+              <td>{{ other.created_at }}</td>
+              <td><a href="/add_to_wishlist/{{ other.id }}/"><button>Add to Wish List</button></a></td>
+            </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <a href='/items/'><button class='btn btn-primary' type="button">Add Item</button></a>
+
+  </body>
+</html>

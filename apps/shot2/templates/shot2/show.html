@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>Item Info</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <a class='home_logout' href='/logout'>Log out</a>
+      <a class='home_logout' href='/home'>Home</a>
+    </div>
+    <div class='container-fluid'>
+    <h1>{{ items.item }}</h1>
+    <p>Users who added this item/product under their wish list:</p>
+
+    <p> {{ others.added_by }}</p>
+  </div>
+
+  </body>
+</html>
